@@ -42,5 +42,5 @@ Inspired by [kinto.sh](https://kinto.sh), which I couldn't get to run on element
 This is horribly insecure and you shouldn't use it.
 
 The issue is that 1) the `run` script has to be sudo-able without
-a password, and 2) `xkeysnail` executes Python files which are probably owned by non-root users. The result is that anyone who can modify these Python files can
-execute arbitrary code as root when the user logs in.
+a password, and 2) `xkeysnail` executes Python files which are probably owned by non-root users. The result is that anyone who can modify `run` _or_
+these Python files can execute arbitrary code as root when the user logs in.
