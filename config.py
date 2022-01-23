@@ -43,4 +43,9 @@ define_keymap(re.compile(".*"), {
     K("Super-Shift-DOWN"): K("C-Shift-END"),
     K("M-Shift-LEFT"): K("C-Shift-LEFT"),
     K("M-Shift-RIGHT"): K("C-Shift-RIGHT"),
+
+    # emacs-style text navigation
+    K("C-a"): K("HOME"),
+    K("C-e"): K("END"),
+    K("C-w"): K("C-BACKSPACE"),
 })
