@@ -1,3 +1,5 @@
+#!/bin/bash
+xkeysnail <(echo '
 # -*- coding: utf-8 -*-
 
 import re
@@ -49,3 +51,4 @@ define_keymap(re.compile(".*"), {
     K("C-e"): K("END"),
     K("C-w"): K("C-BACKSPACE"),
 })
+') > /tmp/xkeysnail.log 2>&1

@@ -21,19 +21,26 @@ Inspired by [kinto.sh](https://kinto.sh), which I couldn't get to run on element
    sudo apt install python3-pip
    sudo pip3 install xkeysnail
    ```
-3. Paste the following into `~/.config/autostart/xkeysnail.desktop` so xkeysnail starts on login. Be sure to replace `/path/to/xkeysnail-macos-keymap/config.py` with the actual path.
+3. Paste the following into `~/.config/autostart/xkeysnail.desktop` so xkeysnail starts on login. Be sure to replace `/path/to/xkeysnail-macos-keymap/run` with the actual path.
    ```
    [Desktop Entry]
-   Version=1.0
    Name=xkeysnail
    Comment=remap keyboard input
-   Exec=sudo xkeysnail /path/to/xkeysnail-macos-keymap/config.py
-   Terminal=false
+   Exec=sudo /path/to/xkeysnail-macos-keymap/run
    Type=Application
-   StartupNotify=true
    ```
-4. Reboot.
+4. Add a `sudoers` config to allow normal users to sudo the `run` script without entering a password (replace `ben` with your actual username and the example path with the actual one). E.g. on Linux Mint (and probably Ubuntu), you can do:
+   ```sh
+   sudo su root
+   echo "ben ALL=NOPASSWD:/path/to/xkeysnail-macos-keymap/run" >/etc/sudoers.d/xkeysnail
+   chmod 440 /etc/sudoers.d/xkeysnail
+   ```
+5. Log out and log in.
 
 ## Security
 
-Since `xkeysnail` runs as `root`, it's possible that `config.py` is also executed as root. Take appropriate precautions to ensure that your `config.py` contains only trusted code. 
+This is horribly insecure and you shouldn't use it.
+
+The issue is that 1) the `run` script has to be sudo-able without
+a password, and 2) `xkeysnail` executes Python files which are probably owned by non-root users. The result is that anyone who can modify these Python files can
+execute arbitrary code as root when the user logs in.
