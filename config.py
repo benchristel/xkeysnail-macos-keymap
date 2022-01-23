@@ -3,6 +3,19 @@
 import re
 from xkeysnail.transform import *
 
+define_keymap(re.compile("^(gnome-)?terminal$", re.IGNORECASE), {
+    # terminal-specific cut-copy-paste
+    K("Super-c"): K("C-Shift-c"),
+    K("Super-x"): K("C-Shift-x"),
+    K("Super-v"): K("C-Shift-v"),
+
+    # tabs and windows
+    K("Super-t"): K("C-Shift-t"),
+    K("Super-n"): K("C-Shift-n"),
+    K("Super-w"): K("C-Shift-w"),
+    K("Super-q"): K("C-Shift-q"),
+})
+
 define_keymap(re.compile(".*"), {
     # undo, copy, cut, paste
     K("Super-z"): K("C-z"),
