@@ -49,6 +49,6 @@ define_keymap(re.compile(".*"), {
     # emacs-style text navigation
     K("C-a"): K("HOME"),
     K("C-e"): K("END"),
-    K("C-w"): K("C-BACKSPACE"),
+    K("C-w"): K("M-BACKSPACE"),
 })
 ') > /tmp/xkeysnail.log 2>&1
