@@ -5,30 +5,36 @@ xkeysnail <(echo '
 import re
 from xkeysnail.transform import *
 
-define_keymap(re.compile("^(gnome-)?terminal$", re.IGNORECASE), {
-    # terminal-specific cut-copy-paste
-    K("Super-c"): K("C-Shift-c"),
-    K("Super-x"): K("C-Shift-x"),
-    K("Super-v"): K("C-Shift-v"),
-
-    # tabs and windows
-    K("Super-t"): K("C-Shift-t"),
-    K("Super-n"): K("C-Shift-n"),
-    K("Super-w"): K("C-Shift-w"),
-    K("Super-q"): K("C-Shift-q"),
-})
-
-define_keymap(re.compile(".*"), {
-    # undo, copy, cut, paste
+default_mapping = {
+    K("Super-q"): K("C-q"),
+    # Super-w closes the current window
+    K("Super-w"): K("M-f4"),
+    K("Super-e"): K("C-e"),
+    K("Super-r"): K("C-r"),
+    K("Super-t"): K("C-t"),
+    K("Super-y"): K("C-y"),
+    K("Super-u"): K("C-u"),
+    K("Super-i"): K("C-i"),
+    K("Super-o"): K("C-o"),
+    K("Super-p"): K("C-p"),
+    K("Super-a"): K("C-a"),
+    K("Super-s"): K("C-s"),
+    K("Super-d"): K("C-d"),
+    K("Super-f"): K("C-f"),
+    K("Super-j"): K("C-j"),
+    K("Super-k"): K("C-k"),
+    K("Super-l"): K("C-l"),
+    K("Super-SEMICOLON"): K("C-SEMICOLON"),
     K("Super-z"): K("C-z"),
     K("Super-c"): K("C-c"),
     K("Super-x"): K("C-x"),
     K("Super-v"): K("C-v"),
-
-    # save, close, quit
-    K("Super-s"): K("C-s"),
-    K("Super-w"): K("M-f4"),
-    K("Super-q"): K("C-q"),
+    K("Super-b"): K("C-b"),
+    K("Super-n"): K("C-n"),
+    K("Super-m"): K("C-m"),
+    K("Super-COMMA"): K("C-COMMA"),
+    K("Super-DOT"): K("C-DOT"),
+    K("Super-SLASH"): K("C-SLASH"),
 
     # text navigation
     K("Super-RIGHT"): K("END"),
@@ -50,5 +56,32 @@ define_keymap(re.compile(".*"), {
     K("C-a"): K("HOME"),
     K("C-e"): K("END"),
     K("C-w"): K("M-BACKSPACE"),
+}
+
+define_keymap(re.compile("^(gnome-)?terminal$", re.IGNORECASE), {
+    # terminal-specific cut-copy-paste
+    K("Super-c"): K("C-Shift-c"),
+    K("Super-x"): K("C-Shift-x"),
+    K("Super-v"): K("C-Shift-v"),
+
+    # tabs and windows
+    K("Super-t"): K("C-Shift-t"),
+    K("Super-n"): K("C-Shift-n"),
+    K("Super-w"): K("C-Shift-w"),
+    K("Super-q"): K("C-Shift-q"),
 })
+
+# Visual Studio Code, Web Browsers
+define_keymap(re.compile("^(code|chromium-browser)$", re.IGNORECASE), {
+    **default_mapping,
+
+    # Super-w closes the current tab, not the window.
+    K("Super-w"): K("C-w"),
+
+    # Super-Shift-[ and Super-Shift-] switch tabs.
+    K("Super-Shift-LEFT_BRACE"): K("C-PAGE_UP"),
+    K("Super-Shift-RIGHT_BRACE"): K("C-PAGE_DOWN"),
+})
+
+define_keymap(re.compile(".*"), default_mapping)
 ') > /tmp/xkeysnail.log 2>&1
