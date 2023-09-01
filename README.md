@@ -1,4 +1,6 @@
-# macOS keyboard shortcuts for Linux, via xkeysnail
+# [DEPRECATED] macOS keyboard shortcuts for Linux, via xkeysnail
+
+This repo is deprecated. I recommend using [AutoKey](https://github.com/autokey/autokey) and my [autokeyconf](https://github.com/benchristel/autokeyconf) configuration tool to get macOS keyboard shortcuts on Linux.
 
 ## Why?
 
